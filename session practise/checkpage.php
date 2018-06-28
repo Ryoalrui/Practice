@@ -35,10 +35,8 @@ if ($_SESSION['zhangsan'] === '12345678') {
   <title>欢迎界面</title>
 </head>
 <body>
-  <?php if ($res!='无权限查看') {
-    ?>
+  <?php if ($res!='无权限查看') { ?>
     <button><a href="http://localhost/Demo/01/Session/%E5%8D%83%E5%B3%B0%E5%AE%9E%E4%BE%8B/logout.php" target="_self" style="text-decoration:none">退出</a></button>
-  <?php
-} ?>
+  <?php } ?>
 </body>
 </html>
