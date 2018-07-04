@@ -54,25 +54,3 @@ class test
 }
 $T=new test();
 $T->getCode()->Show();
-
-
-// $im=imagecreatetruecolor(400,200);
-// $bgcolor=imagecolorallocate($im,200,200,200);
-// imagefill($im,0,0,$bgcolor);
-//
-// $str=['我','们','都','是','中','国','人'];
-// // print_r($str);
-// $key=array_rand($str,4);
-// // print_r($key);
-// $code=$str[$key[0]];
-// $code.=$str[$key[1]];
-// $code.=$str[$key[2]];
-// $code.=$str[$key[3]];
-//
-// $tcolor=imagecolorallocate($im,0,0,0);
-// imagettftext($im,15,mt_rand(-10,10),200,100,$tcolor,'./simhei.ttf',$code);
-//
-//
-// header('content-type:image/png');
-// imagepng($im);
-// imagedestroy($im);
