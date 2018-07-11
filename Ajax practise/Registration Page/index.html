@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/base.css" />
+    <link rel="stylesheet" type="text/css" href="css/register.css" />
+    <title>用户注册表单验证</title>
+    <script src="js/jquery.js"></script>
+</head>
+
+<body>
+<div class="wrapper container">
+    <h2>用户注册</h2>
+    <!-- 通过html触发事件函数，运用return false阻止自身表单提交，方便后续Ajax提交，false可内嵌在JS代码中 -->
+    <form onsubmit="return post(this)">
+        <p class="clearfix">
+        	<label class="one">手机号码：</label>
+        	<input name="telphone" class="text" placeholder="请输入手机号" value="1350298456"/>
+            <label class="error">请输入正确的手机号</label>
+        </p>
+        <p class="clearfix">
+        	<label class="one" >校验码：</label>
+            <input name="code" class="code" type="text"  placeholder="请输入手机6位校验码" value="12345"/>
+            <input class="get_code" type="button" value="获取验证码" />
+            <label class="error">请填写手机接收到的6位数校验码</label>
+        </p>
+        <p class="clearfix">
+         	<label class="one">登录密码：</label>
+        	<input name="password" type="password"  class="text" placeholder="请输入6-16位密码" value="123456"/>
+            <label class="error">密码在6-16个字符之间</label>
+        </p>
+        <p class="clearfix">
+        	<label class="one">确认密码：</label>
+        	<input name="c_password" type="password"  class="text" placeholder="请再次输入密码" value="123456"/>
+            <label class="error">确认密码和密码不一致</label>
+        </p>
+        <p class="clearfix">
+        	<label class="one">姓名：</label>
+        	<input name="name" type="text" class="text" placeholder="请输入2-6位中文" value="哈哈"/>
+            <label class="error">请输入2-6位中文</label>
+        </p>
+        <p class="clearfix">
+            <label class="one">身份证：</label>
+            <input name="idcard" type="text"  class="text"  placeholder="请输入18位二代身份证号码" value="44050919850521201X"/>
+            <label class="error">请输入18位二代身份证号码</label>
+        </p>
+        <p class="clearfix">
+            <label class="one">邮箱：</label>
+            <input name="email" type="text" class="text" placeholder="请输入Email邮箱" value="360699365@qq.com"/>
+            <label class="error">Email邮箱不正确</label>
+        </p>
+       	<p class="clearfix"><input class="submit" type="submit" value="立即注册"/></p>
+    </form>
+</div>
+<script>
+    function post(obj) {
+        var postData = $(obj).serialize();
+        $.post('php/check.php',{postData:postData},function (data) {
+            if(data.code=='wrong'){
+                $("input[name="+data.sign+"]").siblings('.error').show();//siblings:查找每个捕获元素，所有类名为 "error" 的所有同胞/兄弟元素
+            }else{
+                // alert(data.code);
+                location.href = 'ok.html';
+            }
+        },'json');
+        return false;
+    }
+</script>
+</body>
+</html>
