@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>容量单位互换</title>
+  <style>
+  div{width:20%;margin:0px auto;padding:0px;}
+  </style>
+</head>
+<body>
+<div>
+  <h3>容量单位互换工具界面</h3>
+  <!-- <form onsubmit="return test(this)"> -->
+    <input type="text" id="num" placeholder="请填写相对应的参数值">
+    <button onclick="test()">转换</button>
+  <!-- </form> -->
+</div>
+
+<!-- 非表单，jqAjax get形式 -->
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+<script>
+function test() {
+  $.ajax({
+    type:'GET',
+    url:'./14test.php?pos='+document.getElementById('num').value,
+    // data:{pos:document.getElementById('num').value},
+    dataType:'json',
+    success:function(data){
+        document.getElementById('num').value=data.transform;
+    },
+    error:function(jqXHR){
+        alert('出错了:'.jqXHR.status);
+    },
+  });
+}
+
+</script>
+</body>
+</html>
