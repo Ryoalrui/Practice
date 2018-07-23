@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <title>document.getElementById</title>
+</head>
+<body>
+  <p id="con">Javascript</p>
+  <script type="text/javascript">
+    // $mychar=document.getElementById("con").style.color="yellow";
+    $mychar=document.getElementById("con");//显示:null或[object HTMLParagraphElement]
+    document.write("结果："+$mychar);//获取的元素是一个对象，如想对元素进行操作，我们要通过它的属性或方法。
+  </script>
+</body>
+</html>

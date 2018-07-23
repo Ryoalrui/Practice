@@ -1,0 +1,3 @@
+在右边编辑器中，补充第10行代码，通过document.getElementById获取id为con的p标签。
+
+第11行为输出获取的元素，看看结果是什么。
