@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>className属性</title>
+<style>
+    body{ font-size:16px;}
+    .one{
+		border:1px solid #eee;
+		width:230px;
+		height:50px;
+		background:#ccc;
+		color:red;
+    }
+	.two{
+		border:1px solid #ccc;
+		width:230px;
+		height:50px;
+		background:#9CF;
+		color:blue;
+	}
+	</style>
+</head>
+<body>
+    <p id="p1">JavaScript使网页显示动态效果并实现与用户交互功能。</p>
+    <input type="button" value="添加样式" onclick="add()"/>
+
+    <p id="p2" class="one">JavaScript使网页显示动态效果并实现与用户交互功能。</p>
+    <input type="button" value="更改外观" onclick="modify()"/>
+
+    <script type="text/javascript">
+      function add()
+      {
+        $x1=document.getElementById("p1").className="one";
+        // document.write("原类名为："+$x1.className+"<br/>");
+        // $x1.className="one";
+        // document.write("现类名为："+$x1.className+"<br/>");
+      }
+      function modify()
+      {
+        $x2=document.getElementById("p2").className="two";
+        // document.write("原类名为："+$x2.className+"<br/>");
+        // $x2.className="two";
+        // document.write("现类名为："+$x2.className+"<br/>");
+      }
+	  </script>
+</body>
+</html>
