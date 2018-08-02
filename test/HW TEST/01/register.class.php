@@ -21,9 +21,9 @@ define('UPLOAD_ERRS', [
 $error=$_FILES['face']['error'];
 
 //定义移动到下列路径
-$dest='E:/wamp64/www/Demo/大作业/01/mysqldemo-静态页面/upload2018/'.md5(microtime(true).mt_rand()).'.'.pathinfo($_FILES['face']['name'], PATHINFO_EXTENSION);
+$dest='your dir/'.md5(microtime(true).mt_rand()).'.'.pathinfo($_FILES['face']['name'], PATHINFO_EXTENSION);
 if ($error==0) {
-    $store = substr($dest, strlen('E:/wamp64/www/Demo/大作业/01/mysqldemo-静态页面/'));
+    $store = substr($dest, strlen('your dir/'));
 }
 if ($error==0) {
     move_uploaded_file($_FILES['face']['tmp_name'], $dest);
@@ -51,10 +51,10 @@ if ($error==0) {
 echo '<hr/>';
 
 //链接mysql数据库
-$mysqli =new mysqli('localhost', 'root', '1010LING', 'hw');
+$mysqli =new mysqli('localhost', 'root', 'your password', 'your database');
 $mysqli->query('set names utf8');
 // var_dump($mysqli);
-$sql = "INSERT m_system(name,number,email,money,info,face) VALUES(?,?,?,?,?,?)";
+$sql = "INSERT your table(name,number,email,money,info,face) VALUES(?,?,?,?,?,?)";
 $stmt = $mysqli->prepare($sql);
 
 $name = $_POST['name'];
@@ -90,7 +90,7 @@ if ($stmt->execute()) {
 
 $username = $_POST['name'];
 $num = $_POST['number'];
-$res1 = $mysqli->query('SELECT name,number FROM m_system');
+$res1 = $mysqli->query('SELECT name,number FROM your table');
 $rowset = $res1->fetch_all(MYSQLI_ASSOC);
 // print_r($rowset);
 foreach ($rowset as $row) {
@@ -115,7 +115,7 @@ if ($keyword=="") {
 }
 foreach ($rowset as $row) {
     if ($keyword === $row['name']) {
-        $res2 = $mysqli->query("SELECT info,face FROM m_system WHERE name='".$keyword."'");
+        $res2 = $mysqli->query("SELECT info,face FROM your table WHERE name='".$keyword."'");
         $search = $res2->fetch_all(MYSQLI_ASSOC);
         echo '<script>location.href="index.php?username='.$keyword.'&info='.$search[0]['info'].'&face='.$search[0]['face'].'"</script>';
     }
