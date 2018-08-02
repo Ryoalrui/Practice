@@ -2,9 +2,9 @@
 <?php
 header('content-type:text/html;charset=UTF-8');
 session_start();
-$mysqli = new mysqli('localhost', 'root', '1010LING', 'hw');
+$mysqli = new mysqli('localhost', 'root', 'your password', 'your database');
 $mysqli->query('set names utf8');
-$res = $mysqli->query("SELECT * FROM m_system");
+$res = $mysqli->query("SELECT * FROM your table");
 $rowset = $res->fetch_all(MYSQLI_ASSOC);
 error_reporting('E_ALL&~E_NOTICE');
 ?>
