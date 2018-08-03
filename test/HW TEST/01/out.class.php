@@ -6,6 +6,7 @@ function logout()
 {
     setCookie('session_name()', 'session_id()', time()-1);
     $_SESSION['name']=null;
+    $_SESSION['id']=null;
 }
 logout();
 echo "<script>location.href='index.php'</script>";
