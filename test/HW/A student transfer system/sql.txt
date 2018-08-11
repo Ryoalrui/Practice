@@ -1,0 +1,16 @@
+1.建立数据库:
+CREATE DATABASE IF NOT EXISTS hw DEFAULT CHARACTER SET utf8;
+
+2.建立数据表:
+CREATE TABLE IF NOT EXISTS m_system(
+id     INT(11)     UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+name   VARCHAR(30)          NOT NULL,
+number INT(11)  	    NOT NULL,
+email  VARCHAR(30)          NOT NULL,
+money  INT(11)              NOT NULL,
+info   VARCHAR(60)          NOT NULL,
+face   VARCHAR(120)         NOT NULL
+)ENGINE=InnoDB CHARSET=utf8;
+
+3.插入数据：
+INSERT m_system(name,number,email,money,info,face) VALUES('登录',2013364338,'350699369@qq.com',7499,'新加坡','E:/wamp64/www/Demo/HW/MysqlDemo/upload/大众头像.jpg');
