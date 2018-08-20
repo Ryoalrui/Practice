@@ -1,12 +1,13 @@
 <?php
 header('content-type:text/html;charset=UTF-8');
-/*数据库处理类*/
+/*数据库连接类*/
 
 class Db
 {
     public $mysqli;
     public $name;
     public $addr;
+    public $data;
 
 
     public function __construct()
@@ -24,22 +25,22 @@ class Db
     public function insert()
     {
         //数据库插入操作
-        $this->stmt = $this->mysqli->prepare('INSERT pic_upload_system(name,addr) VALUE(?,?)');
-        $this->stmt->bind_param('ss', $this->name, $this->addr);
+        $this->stmt = $this->mysqli->prepare('INSERT pic_upload_system(info,addr) VALUE(?,?)');
+        $this->stmt->bind_param('ss', $this->info, $this->addr);
         if ($this->stmt->execute()) {
             return '数据库资料插入成功';
         }
     }
 
     /**
-     * [数据库针对的登录，进行相关字段的查询操作]
+     * [数据库针对的搜索关键字，进行查询操作]
      * @method query
      * @return [boolean]
      */
     public function query()
     {
-        $this->res = $this->mysqli->query('SELECT name,number FROM pic_upload_system');
-        $this->data = $this->res->fetch_all(MYSQLI_ASSOC);
+        $res = $this->mysqli->query('SELECT info,addr FROM pic_upload_system');
+        $this->data = $res->fetch_all(MYSQLI_ASSOC);
         return true;
     }
 }
