@@ -4,25 +4,7 @@ CREATE DATABASE IF NOT EXISTS hw DEFAULT CHARACTER SET utf8;
 2.建立数据表:
 CREATE TABLE IF NOT EXISTS pic_upload_system(
 id    INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-name  VARCHAR(30) NOT NULL,
+info  VARCHAR(30) NOT NULL,
 addr  VARCHAR(120) NOT NULL
 )ENGINE=InnoDB CHARSET=utf8;
 
-3.插入数据：
-INSERT m_system(name,number,email,money,info,face) VALUES('Ryo',2013364331,'350699361@qq.com',7499,'阿根廷 巴拉那','E:/wamp64/www/Demo/HW/MysqlDemo/upload/锐.jpg');
-
-INSERT m_system(name,number,email,money,info,face) VALUES('LdonG',2013364332,'350699362@qq.com',7499,'卢旺达','E:/wamp64/www/Demo/HW/MysqlDemo/upload/东.jpg');
-
-INSERT m_system(name,number,email,money,info,face) VALUES('pw3k',2013364333,'350699363@qq.com',7499,'广东 汕头','E:/wamp64/www/Demo/HW/MysqlDemo/upload/强.jpg');
-
-INSERT m_system(name,number,email,money,info,face) VALUES('k1im',2013364334,'350699364@qq.com',7499,'广东 梅县','E:/wamp64/www/Demo/HW/MysqlDemo/upload/英.jpg');
-
-INSERT m_system(name,number,email,money,info,face) VALUES('chg06',2013364335,'350699365@qq.com',7499,'香港 九龙城','E:/wamp64/www/Demo/HW/MysqlDemo/upload/智.jpg');
-
-INSERT m_system(name,number,email,money,info,face) VALUES('欒来',2013364336,'350699366@qq.com',7499,'奥地利 施蒂利亚','E:/wamp64/www/Demo/HW/MysqlDemo/upload/筠.jpg');
-
-INSERT m_system(name,number,email,money,info,face) VALUES('寄书贼',2013364337,'350699367@qq.com',7499,'广东 汕尾','E:/wamp64/www/Demo/HW/MysqlDemo/upload/华.jpg');
-
-INSERT m_system(name,number,email,money,info,face) VALUES('南~',2013364338,'350699368@qq.com',7499,'意大利 佛罗伦萨','E:/wamp64/www/Demo/HW/MysqlDemo/upload/南.jpg');
-
-INSERT m_system(name,number,email,money,info,face) VALUES('登录',2013364338,'350699369@qq.com',7499,'新加坡','E:/wamp64/www/Demo/HW/MysqlDemo/upload/大众头像.jpg');
