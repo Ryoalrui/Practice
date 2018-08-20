@@ -4,13 +4,13 @@ header('content-type:text/html;charset=UTF-8');
 
 class Pic
 {
-    public $pic;//上传图片参数属性
     public $error;//上传错误码
-    public $name;//上传的图片名
+    public $type;//上传图片类型
+    public $ext;//上传图片名后缀
+    public $pic;//上传图片参数属性
     public $address;//放进数据库内的完整保存地址
-    public $type;//上传图片的类型
     protected $allowExt = ['gif','jpeg','jpg','png'];//允许上传的图片格式
-    protected $dest = 'E:/wamp64/www/Demo/HW/UploadDemo/upload/';//本机保存位置
+    protected $dest = 'E:/wamp64/www/Demo/HW/Upload/upload/';//本机保存位置
 
 
     public function __construct($param)
@@ -28,10 +28,10 @@ class Pic
 
         //获取错误码
         $this->error = $param['upload']['error'];
-        //获取上传图片名
-        $this->name = $param['upload']['name'];
-        //获取上传的类型
-        $this->type = strtolower($param['upload']['type']);
+        //获取图片类型
+        $this->type = $param['upload']['type'];
+        //获取图片名后缀
+        $this->ext = substr($param['upload']['type'], strpos($param['upload']['type'], '/')+1);
     }
 
     /**
@@ -60,6 +60,7 @@ class Pic
               echo "<script>location.href='index.php'</script>";
               break;
             }
+            return false;
         } else {
             return $this->checkType($this->pic['upload']['name'], $this->pic['upload']['size']);
         }
@@ -67,36 +68,31 @@ class Pic
     public function checkType($file, $size)
     {
         if (!in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $this->allowExt)) {
-            echo "<script>alert('格式不能被识别，请上传gif、jpeg、png类型的图片')</script>";
+            echo "<script>alert('格式不能被识别，请上传gif、jpeg、jpg、png类型的图片')</script>";
             echo "<script>location.href='index.php'</script>";
+            return false;
             exit();
         }
         if ($size<=1024) {
-            echo "<script>alert('格式不能被识别，请上传真实图片')</script>";
+            echo "<script>alert('图片大小有问题，请上传真实图片')</script>";
             echo "<script>location.href='index.php'</script>";
+            return false;
             exit();
         }
-        return $this;
+        return true;
     }
     /**
-     * [上传头像，保存在本机指定位置]
+     * [上传图片，保存在本机指定位置]
      * @method upload
      * @return [string]
      */
-    public function upload()
+    public function upload($info)
     {
-        if (move_uploaded_file($this->pic['upload']['tmp_name'], $this->dest.$this->pic['upload']['name'])) {
+        if (move_uploaded_file($this->pic['upload']['tmp_name'], $this->dest.$info.'.'.$this->ext)) {
+            $this->address = $this->dest.$info.'.'.$this->ext;
             return true;
         } else {
             return false;
         }
-    }
-    /**
-     * [获取数据库头像存储地址]
-     * @method getAdress
-     */
-    public function getAdress()
-    {
-        $this->address = $this->dest.$this->pic['upload']['name'];
     }
 }
