@@ -1,0 +1,116 @@
+<!-- 发布课程页 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布课程</title>
+    <link rel="stylesheet" href="../../static/css/list.css">
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <script src='http://cdn.bootcss.com/jquery/2.2.4/jquery.js'></script>
+</head>
+<body>
+<!-- 头部 -->
+<header class="header">
+    <div class="logo"></div>
+    <a href="/Demo/HW/MvcDemo/index.php/IndexController/public" class="nav__item nav__course">添加课程</a>
+    <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list" class="nav__item nav__item_icon_new">课程列表</i></a>
+    <a href="/Demo/HW/MvcDemo/index.php/ShoppingController/shopping_list" class="nav__item">购物车</a>
+</header>
+<div id="main">
+    <div class="wrap">
+    </div>
+    <div class="container">
+        <fieldset>
+            <legend>发布课程:</legend><div class="control-group">
+            <div class="control-group">
+                <label class="control-label">课程名称</label>
+                <div class="controls">
+                    <input type="text" class="span4" id="name" onblur="checkname()" placeholder="名称字数不能超过12" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">课程价格</label>
+                <div class="controls">
+                    <input type="text" class="span4" id="price" onblur="checkprice()" placeholder="请填写价格"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" >所属方向</label>
+                <div class="controls">
+                    <select name="type">
+                        <option>PHP</option>
+                        <option>Java</option>
+                        <option>Html/css</option>
+                        <option>Python</option>
+                        <option>Android</option>
+                        <option>Ios</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" >课程简介</label>
+                <div class="controls">
+                    <textarea name="content" rows="10" class="span8" id="intro" onblur="checkinfo()" placeholder="简介字数不能超过25"></textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" >课程级别</label>
+                <div class="controls">
+                    <select name="level">
+                        <option>初级</option>
+                        <option>中级</option>
+                        <option>高级</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn btn-primary" onclick="add()" name="pubMsg" >添加课程</button>
+                    <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list"><button class="btn" type="button" contenteditable="true">课程列表</button></a>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+<script>
+function checkname(){
+  var cname = document.getElementById('name').value;
+  if(cname.length>12){
+    alert('课程名称太长，请简短一点');
+  }
+}
+function checkprice(){
+  var cprice = document.getElementById('price').value;
+  if(isNaN(cprice)){
+    alert('请填写合理价格');
+  }
+}
+function checkinfo(){
+  var cinfo = document.getElementById('intro').value;
+  if(cinfo.length>25){
+    alert('课程简介太长，请简短一点');
+  }
+}
+function add() {
+  if(document.getElementById('name').value!='' && document.getElementById('price').value!='' && document.getElementById('price').value!=''){
+    $.post('/Demo/HW/MvcDemo/index.php/ProductController/insert',{
+      name:document.getElementById('name').value,
+      price:document.getElementById('price').value,
+      direction:document.getElementsByName('type')[0].value,
+      intro:document.getElementById('intro').value,
+      level:document.getElementsByName('level')[0].value},function(res){
+    },'json');
+    alert('课程添加成功！');
+    location.assign("/Demo/HW/MvcDemo/index.php/ProductController/course_list");
+    // location.assign("../../test.php");
+  }else{
+    alert('请先填写完相关项！');
+  }
+
+}
+</script>
+</body>
+</html>

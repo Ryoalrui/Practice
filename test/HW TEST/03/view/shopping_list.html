@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" href="../../static/css/shopcar.css">
+    <script src='http://cdn.bootcss.com/jquery/2.2.4/jquery.js'></script>
+</head>
+<body>
+<!-- header区域 -->
+<header class="header">
+    <div class="logo"></div>
+    <div class="nav">
+      <a href="/Demo/HW/MvcDemo/index.php/IndexController/public" class="nav__item nav__course">添加课程</a>
+      <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list" class="nav__item nav__item_icon_new">课程列表</i></a>
+      <a href="/Demo/HW/MvcDemo/index.php/ShoppingController/shopping_list" class="nav__item">购物车</a>
+    </div>
+    <div class="profile">
+    </div>
+    <!--<div class="search">
+        <input type="text" class="search_input">
+        <a href="" class="search_submit"></a>
+    </div>-->
+</header>
+<!-- banner区域 -->
+<div class="banner">
+    <div>我的购物车</div>
+</div>
+<!-- goods区域 -->
+<div  style="max-width: 1104px;margin: -80px auto;box-shadow: 0 0px 8px rgba(7, 17, 27, 0.2);" id="cartBody">
+    <div class="cart-panel">
+        <div class="hd">
+            <ul class="order-title">
+                <li class="product">商品名称</li>
+                <li class="total-price">总价</li>
+                <li class="unit-price">单价</li>
+                <li class="number">数量</li>
+                <li class="operate">操作</li>
+            </ul>
+        </div>
+        <div class="bd">
+            <!-- 商品列表 -->
+            <ul class="order-list">
+                <li><input type="checkbox" class="check" checked onclick="return false;"></li>
+                <li class="img-box">
+                    <a href="http://www.imooc.com">
+                        <img src="../../static/img/g1.jpg" alt="">
+                    </a>
+                </li>
+                <li class="product">
+                    <a href="http://www.imooc.com">
+                        <span>前端小白成长记</span>
+                    </a>
+                </li>
+                <li class="total-price">
+                    <div class="input-num">
+                        ¥<input   class="num" type="" value="599" name="money">
+                    </div>
+                </li>
+                <li class="unit-price">
+                    <span class="price-sign">¥</span>
+                    <span class="price-num">599</span>
+                </li>
+                <li class="number">
+                    <div class="input-num">
+                        <a>-</a>
+                        <input type="text" value="1" class="num">
+                        <a>+</a>
+                    </div>
+                </li>
+                <li class="operate"><a href="">删除</a></li>
+            </ul>
+            <ul class="order-list">
+                <li><input type="checkbox" class="check"  checked onclick="return false;"></li>
+                <li class="img-box">
+                    <a href="http://www.imooc.com">
+                        <img src="../../static/img/g1.jpg" alt="">
+                    </a>
+                </li>
+                <li class="product">
+                    <a href="http://www.imooc.com">
+                        <span>前端小白成长记</span>
+                    </a>
+                </li>
+                <li class="total-price">
+                    <div class="input-num">
+                        ¥<input class="num" type="" value="599" name="money">
+                    </div>
+                </li>
+                <li class="unit-price">
+                    <span class="price-sign">¥</span>
+                    <span class="price-num">599</span>
+                </li>
+                <li class="number">
+                    <div class="input-num">
+                        <a>-</a>
+                        <input type="text" value="1" class="num">
+                        <a>+</a>
+                    </div>
+                </li>
+                <li class="operate"><a href="">删除</a></li>
+            </ul>
+            <ul class="order-list">
+                <li><input type="checkbox" class="check"  checked onclick="return false;"></li>
+                <li class="img-box">
+                    <a href="http://www.imooc.com">
+                        <img src="../../static/img/g1.jpg" alt="">
+                    </a>
+                </li>
+                <li class="product">
+                    <a href="http://www.imooc.com">
+                        <span>前端小白成长记</span>
+                    </a>
+                </li>
+                <li class="total-price">
+                    <div class="input-num">
+                        ¥<input class="num" type="" value="599" name="money">
+                    </div>
+                </li>
+                <li class="unit-price">
+                    <span class="price-sign">¥</span>
+                    <span class="price-num">599</span>
+                </li>
+                <li class="number">
+                    <div class="input-num">
+                        <a>-</a>
+                        <input type="text" value="1" class="num">
+                        <a>+</a>
+                    </div>
+                </li>
+                <li class="operate"><a href="">删除</a></li>
+            </ul>
+            <ul class="order-list">
+                <li><input type="checkbox" class="check"  checked onclick="return false;"></li>
+                <li class="img-box">
+                    <a href="http://www.imooc.com">
+                        <img src="../../static/img/g1.jpg" alt="">
+                    </a>
+                </li>
+                <li class="product">
+                    <a href="http://www.imooc.com">
+                        <span>前端小白成长记</span>
+                    </a>
+                </li>
+                <li class="total-price">
+                    <div class="input-num">
+                        ¥<input   class="num" type="" value="336" name="money">
+                    </div>
+                </li>
+                <li class="unit-price">
+                    <span class="price-sign">¥</span>
+                    <span class="price-num">336</span>
+                </li>
+                <li class="number">
+                    <div class="input-num">
+                        <a>-</a>
+                        <input type="text" value="1" class="num">
+                        <a>+</a>
+                    </div>
+                </li>
+                <li class="operate"><a href="">删除</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 结算栏 -->
+    <div class="pay-bar">
+        <div class="pay-info">
+            <div class="price">
+                <span class="price-sign">¥</span>
+                <span class="price-num pay-money"></span>
+            </div>
+            <span>应付金额：</span>
+        </div>
+        <button style="margin-right: -50px">提交订单</button>
+    </div>
+</div>
+</body>
+</html>
