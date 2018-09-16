@@ -35,4 +35,28 @@ class Database
         $rowset = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rowset;
     }
+    public function add($bind)
+    {
+        $sql = 'INSERT shopping_cart(name,price) value(?,?)';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(1, $bind['coures_name'], PDO::PARAM_STR);
+        $stmt->bindValue(2, $bind['coures_price'], PDO::PARAM_STR);
+        $stmt->execute();
+    }
+    public function del($bind)
+    {
+        $sql = "DELETE FROM shopping_cart WHERE id=:id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":id", $bind['course_id'], PDO::PARAM_INT);
+        $stmt->execute();
+    }
+    public function search($key)
+    {
+        $sql = "SELECT * FROM course WHERE direction=:direction";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":direction", $key, PDO::PARAM_STR);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
 }
