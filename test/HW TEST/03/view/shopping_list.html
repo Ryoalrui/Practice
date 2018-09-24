@@ -38,39 +38,10 @@
                 <li class="operate">操作</li>
             </ul>
         </div>
+        <?php foreach($res as $single): ?>
         <div class="bd">
             <!-- 商品列表 -->
             <ul class="order-list">
-                <li><input type="checkbox" class="check" checked onclick="return false;"></li>
-                <li class="img-box">
-                    <a href="http://www.imooc.com">
-                        <img src="../../static/img/g1.jpg" alt="">
-                    </a>
-                </li>
-                <li class="product">
-                    <a href="http://www.imooc.com">
-                        <span>前端小白成长记</span>
-                    </a>
-                </li>
-                <li class="total-price">
-                    <div class="input-num">
-                        ¥<input   class="num" type="" value="599" name="money">
-                    </div>
-                </li>
-                <li class="unit-price">
-                    <span class="price-sign">¥</span>
-                    <span class="price-num">599</span>
-                </li>
-                <li class="number">
-                    <div class="input-num">
-                        <a>-</a>
-                        <input type="text" value="1" class="num">
-                        <a>+</a>
-                    </div>
-                </li>
-                <li class="operate"><a href="">删除</a></li>
-            </ul>
-            <ul class="order-list">
                 <li><input type="checkbox" class="check"  checked onclick="return false;"></li>
                 <li class="img-box">
                     <a href="http://www.imooc.com">
@@ -79,100 +50,75 @@
                 </li>
                 <li class="product">
                     <a href="http://www.imooc.com">
-                        <span>前端小白成长记</span>
+                        <span><?php echo $single['name']; ?></span>
                     </a>
                 </li>
                 <li class="total-price">
                     <div class="input-num">
-                        ¥<input class="num" type="" value="599" name="money">
+                        ¥<input class="num" type="" value="<?php echo $single['price']; ?>" name="money">
                     </div>
                 </li>
                 <li class="unit-price">
                     <span class="price-sign">¥</span>
-                    <span class="price-num">599</span>
+                    <span class="price-num"><?php echo $single['price']; ?></span>
                 </li>
                 <li class="number">
                     <div class="input-num">
-                        <a>-</a>
-                        <input type="text" value="1" class="num">
-                        <a>+</a>
+                        <a onclick="add(<?php echo $single['id']?>,<?php echo $single['price']?>)">+</a>
+                        <input type="text" value="1" class="num" name='act' onblur="test(<?php echo $single['id']?>,<?php echo $single['price']?>,this.value)">
+                        <a onclick="del(<?php echo $single['id']?>,<?php echo $single['price']?>)">-</a>
                     </div>
                 </li>
-                <li class="operate"><a href="">删除</a></li>
-            </ul>
-            <ul class="order-list">
-                <li><input type="checkbox" class="check"  checked onclick="return false;"></li>
-                <li class="img-box">
-                    <a href="http://www.imooc.com">
-                        <img src="../../static/img/g1.jpg" alt="">
-                    </a>
-                </li>
-                <li class="product">
-                    <a href="http://www.imooc.com">
-                        <span>前端小白成长记</span>
-                    </a>
-                </li>
-                <li class="total-price">
-                    <div class="input-num">
-                        ¥<input class="num" type="" value="599" name="money">
-                    </div>
-                </li>
-                <li class="unit-price">
-                    <span class="price-sign">¥</span>
-                    <span class="price-num">599</span>
-                </li>
-                <li class="number">
-                    <div class="input-num">
-                        <a>-</a>
-                        <input type="text" value="1" class="num">
-                        <a>+</a>
-                    </div>
-                </li>
-                <li class="operate"><a href="">删除</a></li>
-            </ul>
-            <ul class="order-list">
-                <li><input type="checkbox" class="check"  checked onclick="return false;"></li>
-                <li class="img-box">
-                    <a href="http://www.imooc.com">
-                        <img src="../../static/img/g1.jpg" alt="">
-                    </a>
-                </li>
-                <li class="product">
-                    <a href="http://www.imooc.com">
-                        <span>前端小白成长记</span>
-                    </a>
-                </li>
-                <li class="total-price">
-                    <div class="input-num">
-                        ¥<input   class="num" type="" value="336" name="money">
-                    </div>
-                </li>
-                <li class="unit-price">
-                    <span class="price-sign">¥</span>
-                    <span class="price-num">336</span>
-                </li>
-                <li class="number">
-                    <div class="input-num">
-                        <a>-</a>
-                        <input type="text" value="1" class="num">
-                        <a>+</a>
-                    </div>
-                </li>
-                <li class="operate"><a href="">删除</a></li>
+                <li class="operate"><a href="javascript:drop(<?php echo $single['id']?>)">删除</a></li>
+
             </ul>
         </div>
+        <?php endforeach; ?>
     </div>
     <!-- 结算栏 -->
     <div class="pay-bar">
         <div class="pay-info">
             <div class="price">
                 <span class="price-sign">¥</span>
-                <span class="price-num pay-money"></span>
+                <span class="price-num pay-money" id='res'></span>
             </div>
             <span>应付金额：</span>
         </div>
-        <button style="margin-right: -50px">提交订单</button>
+        <button style="margin-right: -50px" onclick="count()">结算</button>
     </div>
 </div>
+<script>
+function add(id,price){
+    var x = document.getElementsByName('act')[id-1].value;
+    document.getElementsByName('act')[id-1].value = Number(x)+Number(1);
+    document.getElementsByName('money')[id-1].value = price * document.getElementsByName('act')[id-1].value;
+}
+function del(id,price){
+    var x = document.getElementsByName('act')[id-1].value;
+    if(x-1<1){
+      alert('最小值为1');
+    }else{
+      document.getElementsByName('act')[id-1].value = x-1;
+    }
+    document.getElementsByName('money')[id-1].value = price * document.getElementsByName('act')[id-1].value;
+}
+function test(id,price,num){
+    var arr = document.getElementsByName('money');
+    arr[id-1].value = price * num;
+}
+function drop(id){
+    $.post('/Demo/HW/MvcDemo/index.php/ShoppingController/drop',{course_id:id},function(res){},'json');
+    alert('删除成功！');
+    location.reload();
+}
+function count(){
+    var result = 0;
+    var arr = document.getElementsByName('money');
+    for(var x=0;x<arr.length;x++){
+        result += Number(arr[x].value);
+    }
+    document.getElementById('res').innerHTML=result;
+}
+</script>
 </body>
 </html>
