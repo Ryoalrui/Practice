@@ -16,8 +16,8 @@
 	<header class="header">
 		<div class="logo"></div>
         <div class="nav">
-					<a href="/Demo/HW/MvcDemo/index.php/IndexController/public" class="nav__item nav__course">添加课程</a>
-					<a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list" class="nav__item nav__item_icon_new">课程列表</i></a>
+					<a href="/Demo/HW/MvcDemo/index.php/IndexController/public" class="nav__item nav__item_icon_new">添加课程</a>
+					<a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list" class="nav__item nav__course">课程列表</i></a>
 					<a href="/Demo/HW/MvcDemo/index.php/ShoppingController/shopping_list" class="nav__item">购物车</a>
         </div>
 	</header>
@@ -29,24 +29,65 @@
                 <span class="hd">方向 ： </span>
                 <div class="bd">
                     <ul>
+												<?php if($_GET['key']=='PHP'): ?>
+													<li class="course-nav-item active">
+	                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=PHP">PHP</a>
+	                        </li>
+												<?php else: ?>
+												<li class="course-nav-item">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=PHP">PHP</a>
+                        </li>
+												<?php endif; ?>
+
+												<?php if($_GET['key']=='Java'): ?>
                         <li class="course-nav-item active">
-                            <a href="">Php</a>
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Java">Java</a>
                         </li>
-                        <li class="course-nav-item" id="test">
-                            <a href="" onclick="test()">Java</a>
+												<?php else: ?>
+												<li class="course-nav-item">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Java">Java</a>
                         </li>
-                        <li class="course-nav-item">
-                            <a href="">Html/css</a>
+												<?php endif; ?>
+
+												<?php if($_GET['key']=='Html/css'): ?>
+                        <li class="course-nav-item active">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Html/css">Html/css</a>
                         </li>
-                        <li class="course-nav-item">
-                            <a href="">Python</a>
+												<?php else: ?>
+												<li class="course-nav-item">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Html/css">Html/css</a>
                         </li>
-                        <li class="course-nav-item">
-                            <a href="">Android</a>
+												<?php endif; ?>
+
+												<?php if($_GET['key']=='Python'): ?>
+                        <li class="course-nav-item active">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Python">Python</a>
                         </li>
-                        <li class="course-nav-item">
-                            <a href="">Ios</a>
+												<?php else: ?>
+												<li class="course-nav-item">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Python">Python</a>
                         </li>
+												<?php endif; ?>
+
+												<?php if($_GET['key']=='Android'): ?>
+                        <li class="course-nav-item active">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Android">Android</a>
+                        </li>
+												<?php else: ?>
+												<li class="course-nav-item">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Android">Android</a>
+                        </li>
+												<?php endif; ?>
+
+												<?php if($_GET['key']=='Ios'): ?>
+                        <li class="course-nav-item active">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Ios">Ios</a>
+                        </li>
+												<?php else: ?>
+												<li class="course-nav-item">
+                            <a href="/Demo/HW/MvcDemo/index.php/ProductController/course_list?key=Ios">Ios</a>
+                        </li>
+												<?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -55,37 +96,69 @@
     <div class="container">
         <!-- 课程列表 -->
         <div class="course-list">
+					<?php foreach($res as $single): ?>
             <div class="course-card-container">
-                <a href="">
                     <div class="course-card">
                         <div class="course-card-top">
-                            <span>HTML/CSS</span>
+                            <span><?php echo $single['direction']; ?></span>
                         </div>
                         <div class="course-card-content">
-                            <h3>HTML+CSS基础课程</h3>
-                            <p>HTML+CSS基础教程8小时带领大家步步深入学习标签用法和意义</p>
+													<h3><?php echo $single['name']; ?></h3>
+                            <p><?php echo $single['intro']; ?></p>
                             <div class="course-card-bottom">
-                                <span>初级 ~ 111111</span>
-                                <span></span>
+                                <span><?php echo $single['level'].''.'￥'.$single['price']; ?></span>
+																<!-- <span onclick="add()"></span> -->
+																<a href="javascript:add('<?php echo $single['id']?>','<?php echo $single['name']?>','<?php echo $single['price']?>')"><span></span></a>
                             </div>
                         </div>
                     </div>
-                    <div class="course-card-bk">
-                        <img src="./img/bk1.jpg" alt="">
-                    </div>
-                </a>
+										<div class="course-card-bk">
+												<img src="./img/bk1.jpg" alt="">
+										</div>
             </div>
+					<?php endforeach; ?>
         </div>
         <nav class='text-center'>
             <ul class="pagination">
-                <li><a href="">上一页</a></li>
-                <li class='active'><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">下一页</a></li>
+                <li><a href="<?php echo $page->prev()?>">上一页</a></li>
+							<?php for($i=1;$i<=ceil($number[0]['nums']/6);$i++): ?>
+								<?php if ($page->page==$i){
+									echo "<li class='active'><a>".$i."</a></li>";
+								}else{
+									echo "<li><a href=".$_SERVER['PHP_SELF']."?page=".$i.">".$i."</a></li>";
+								}
+								?>
+							<?php	endfor; ?>
+								<li><a href="<?php echo $page->next()?>">下一页</a></li>
             </ul>
         </nav>
     </div>
 </div>
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+<script>
+function add(id,coures_name,coures_price){
+	alert("加入购物车成功！");
+	var data={};
+  data.coures_id=id;
+  data.coures_name=coures_name;
+  data.coures_price=coures_price;
+  $.ajax({
+      type: 'post',
+      url: "/Demo/HW/MvcDemo/index.php/ShoppingController/add", //把获取到数据添加的购物车表中
+      data:data,
+      dataType: 'json',
+      error: function(){return false;},
+      success:function(res){
+          if(res.rslt=='succ'){
+              alert(res.info);
+              // window.location.href='/Demo/HW/MvcDemo/index.php/ShoppingController/add'
+          }else{
+              alert(d.info);
+          }
+      }
+  })
+	location.assign("/Demo/HW/MvcDemo/index.php/ShoppingController/shopping_list");
+}
+</script>
 </body>
 </html>
